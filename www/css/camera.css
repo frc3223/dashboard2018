@@ -1,0 +1,28 @@
+
+.camera {
+    width: 500px;
+    height: 374px;
+    margin: 10px;
+    text-align: left;
+}
+
+.camera img {
+    width: 500px;
+    height: 374px;
+}
+
+.camera .signal {
+    position: absolute;
+	width:500px;
+	height:auto;
+}
+
+.alt-camera {
+    width: 160px;
+    height: 120px;
+    margin: 10px;
+}
+.alt-camera img {
+    width:160px;
+    height: 120px;
+}

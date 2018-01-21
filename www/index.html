@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/my-css.css">
+	<link rel="stylesheet" type="text/css" href="css/camera.css">
+    <style>
+        .coord-display {
+            position: fixed;
+            width: 90px;
+            height: 25px;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+	<title>FRC 3223</title>
+</head>
+
+<body>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/networktables.js"></script>
+	<script src="js/connectivity.js"></script>
+	<script src="js/tab_networktables.js"></script>
+	<script src="js/cameras.js"></script>
+	<script src="js/smoothie.js"></script>
+	<script src="js/charts.js"></script>
+	<script src="js/svg.js"></script>
+	<script src="js/controller.js"></script>
+	<script src="js/auto.js"></script>
+	
+	<div class="container-fluid">
+		<!-- tabs -->
+		<ul class="nav nav-tabs" data-tabs="tabs">
+			<li class="active">
+				<a data-toggle="tab" href="#teleop">Teleop</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#auto">Auto</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#params">Parameters</a>
+			</li>
+            <li>
+				<a data-toggle="tab" href="#networktables">Networktables</a>
+            </li>
+			<li>
+				<a data-toggle="tab" href="#charts">Charts</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#controls">Controls</a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#lightshow">Lightshow</a>
+			</li>
+		</ul>
+	
+		<div class="tab-content">
+			<!-- Teleop tab -->
+			<div id="teleop" class="tab-pane active">
+                <span class="connection-warning">
+                    <i class='glyphicon glyphicon-alert'></i>
+                    Dashboard not connected. 
+                    <br>
+                </span>
+                <span class="robot-connection-warning">
+                    <i class='glyphicon glyphicon-alert'></i>
+                    Robot not connected. 
+                </span>
+                <hr/>
+				<div class="container-fluid text-center">
+					<div class="row">
+						<!-- TODO: update span to reflect which controller is currently controlling robot -->
+						<p id="driver-text">Driver <span id="active-driver-number">1</span> in control</p>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+                            <div id="webcam0_stream" class="camera"> 
+                                <img class="no-signal" src="img/placeholder.png" />
+                            </div>
+
+                                <select id='leftFrameCamera'>
+                                    <option value="front">Front</option>
+                                    <option value="back">Back</option>
+                                    <option value="structure">Structure</option>
+                                    <option value="none">None</option>
+                                </select>
+						</div>
+						<div class="col-sm-6">
+                            <div id="webcam1_stream" class="camera">
+                                <img class="no-signal" src="img/placeholder.png" />
+                            </div>
+
+                                <select id='rightFrameCamera'>
+                                    <option value="front">Front</option>
+                                    <option value="back">Back</option>
+                                    <option value="structure">Structure</option>
+                                    <option value="none">None</option>
+                                </select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<p class="teleop-status-text">shooter <span id="shooter-status" class="label label-success">ON<span></p>
+						</div>
+						<div class="col-sm-6">
+							<p class="teleop-status-text">rope <span id="rope-status" class="label label-danger">OFF</span></p>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+		
+            <div role="tabpanel" class="tab-pane"  id="auto">
+                <div>
+                    <span class="connection-warning">
+                        <i class='glyphicon glyphicon-alert'></i>
+                        Websocket not connected. Robot's autonomous mode may be 
+                        different than what is shown below.
+                        <br>
+                    </span>
+                    <span class="robot-connection-warning">
+                        <i class='glyphicon glyphicon-alert'></i>
+                        Robot not connected. Robot's autonomous mode may be 
+                        different than what is shown below.
+                    </span>
+                </div>
+                <div>
+                    Java thinks auto mode is: <span id="javaAutoMode"></span>
+                </div>
+				<table>
+					<tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="radio" name="autochoice" value="none"/>
+									None
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_none.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="radio" name="autochoice" value="middleGear"/>
+									Middle Gear
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_center.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="radio" name="autochoice" value="rightGear"/>
+									Right Gear
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_right.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="radio" name="autochoice" value="leftGear"/>
+									Left Gear
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_left.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="radio" name="autochoice" value="noVision"/>
+									No Vision
+								</label>
+							<div class="pull-right">
+								<img src="/img/no_vision.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+				</table>
+            </div>
+			<!-- lightshow-->
+			<div role="tabpanel" class="tab-pane"  id="lightshow">
+				<table>
+					<tr>
+						<td>
+							<label class="light-option">
+								<label>
+									<input type="radio" name="lightshowchoice" value="none"/>
+									None
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_none.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="light-option">
+								<label>
+									<input type="radio" name="lightshowchoice" value="middleGear"/>
+									Middle Gear
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_center.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="light-option">
+								<label>
+									<input type="radio" name="lightshowchoice" value="rightGear"/>
+									Right Gear
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_right.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="light-option">
+								<label>
+									<input type="radio" name="lightshowchoice" value="leftGear"/>
+									Left Gear
+								</label>
+							<div class="pull-right">
+								<img src="/img/auto_left.png"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="light-option">
+								<label>
+									<input type="radio" name="lightshowchoice" value="noVision"/>
+									No Vision
+								</label>
+							<div class="pull-right">
+								<img src="/img/nothing.jpg"/>
+							</div>
+							</label>
+						</td>
+					</tr>
+				</table>
+            </div>	
+            <!-- Parameters tab -->
+            <div id="params" class="tab-pane">
+                <div class="container-fluid">
+                    <table class="table table-striped">
+                        <!-- People who want their data displayed here, feel free to mess with this. -->
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>A</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="networktables">
+
+
+                <div>
+                    <select id="ChartSelect">
+                        <option value="">None</option>
+                        <option value="angle" selected>NavX angle</option>
+                        <option value="yaw">NavX yaw</option>
+                        <option value="roll">NavX roll</option>
+                        <option value="pitch">NavX pitch</option>
+                        <option value="accel_x">NavX Acceleration X</option>
+                        <option value="accel_y">NavX Acceleration Y</option>
+                        <option value="accel_z">NavX Acceleration Z</option>
+                        <option value="velocity_x">NavX Velocity X</option>
+                        <option value="velocity_y">NavX Velocity Y</option>
+                        <option value="velocity_z">NavX Velocity Z</option>
+                        <option value="pos_x">NavX Displacement X</option>
+                        <option value="pos_y">NavX Displacement Y</option>
+                        <option value="pos_z">NavX Displacement Z</option>
+                        <option value="fused_heading">NavX Fused Heading</option>
+                        <option value="raw_shooter_angle">Shooter angle (raw)</option>
+                        <option value="shooter_pitch">Shooter angle (compensated)</option>
+                    </select>
+                    <span id="ChartedValue"></span>
+                </div>
+                <div id="chart">
+                </div>
+
+                <table id="joystick_vars" class="table table-hover">
+                    <tbody>
+                    <p>Joystick</p>
+                    </tbody>
+                </table>
+                <table id="sensor_vars" class="table table-hover">
+                    <tbody>
+                    <p>Sensor</p>
+                    </tbody>
+                </table>
+                <table id="auto_vars" class="table table-hover">
+                    <tbody>
+                    <p>Auto</p>
+                    </tbody>
+                </table>
+                <table id="parameter_vars" class="table table-hover">
+                    <tbody>
+                    <p>Parameters</p>
+                    </tbody>
+                </table>
+                <table id="nt" class="table table-hover">
+                    <tbody>
+                    <p>Network</p>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="charts" class="tab-pane">
+                <div class="container-fluid">
+                    <div class="row">Dashboard</div>
+                    <div class="row">
+                        <canvas id="usage_client_dashboard_reads" width="400" height="100"></canvas>
+                        Reads
+                    </div>
+                    <div class="row">
+                        <canvas id="usage_client_dashboard_kpbs" width="400" height="100"></canvas>
+                        Kpbs
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control map tab -->
+            <div id="controls" class="tab-pane">
+                <div id='xyreporter' class='coord-display'>
+                </div>
+                <div id="controller">
+
+                </div>
+            </div>
+        </div>
+        <!-- /.tab-content -->
+    </div>
+	
+
+    </body>
+    </html>
