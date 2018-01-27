@@ -59,25 +59,25 @@ $(function drawRect() {
         width: 2
     });
 	
-	var left_stick_text = draw.text("lateral motion").move(30, 50);
+	var left_stick_text = draw.text("PLACEHOLDER").move(30, 50);
     var left_stick_line = draw.line(241, 87, 125, 60).stroke({
         color: "skyblue",
         width: 2
     });
 
-    var right_stick_text = draw.text("climber on (press)").move(560, 220);
+    var right_stick_text = draw.text("PLACEHOLDER").move(560, 220);
     var right_stick_line = draw.line(385, 145, 550, 230).stroke({
         color: "skyblue",
         width: 2
     });
 
-    var d_pad_up_text = draw.text("toggle shooter").move(30, 90);
+    var d_pad_up_text = draw.text("PLACEHOLDER").move(30, 90);
     var d_pad_up_line = draw.line(287, 125, 130, 100).stroke({
         color: "skyblue",
         width: 2
     });
 
-    var d_pad_left_text = draw.text("ball intake in").move(20, 135);
+    var d_pad_left_text = draw.text("PLACEHOLDER").move(20, 135);
     var d_pad_left_line = draw.line(270, 145, 110, 145).stroke({
         color: "skyblue",
         width: 2

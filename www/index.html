@@ -41,9 +41,6 @@
 			<li>
 				<a data-toggle="tab" href="#auto">Auto</a>
 			</li>
-			<li>
-				<a data-toggle="tab" href="#params">Parameters</a>
-			</li>
             <li>
 				<a data-toggle="tab" href="#networktables">Networktables</a>
             </li>
@@ -102,14 +99,6 @@
                                 </select>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<p class="teleop-status-text">shooter <span id="shooter-status" class="label label-success">ON<span></p>
-						</div>
-						<div class="col-sm-6">
-							<p class="teleop-status-text">rope <span id="rope-status" class="label label-danger">OFF</span></p>
-						</div>
-					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</div>
@@ -137,50 +126,8 @@
 							<label class="auto-option">
 								<label>
 									<input type="radio" name="autochoice" value="none"/>
-									None
+									None ⃠
 								</label>
-							<div class="pull-right">
-								<img src="/img/auto_none.png"/>
-							</div>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="radio" name="autochoice" value="middleGear"/>
-									Middle Gear
-								</label>
-							<div class="pull-right">
-								<img src="/img/auto_center.png"/>
-							</div>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="radio" name="autochoice" value="rightGear"/>
-									Right Gear
-								</label>
-							<div class="pull-right">
-								<img src="/img/auto_right.png"/>
-							</div>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="radio" name="autochoice" value="leftGear"/>
-									Left Gear
-								</label>
-							<div class="pull-right">
-								<img src="/img/auto_left.png"/>
-							</div>
 							</label>
 						</td>
 					</tr>
@@ -189,11 +136,8 @@
 							<label class="auto-option">
 								<label>
 									<input type="radio" name="autochoice" value="noVision"/>
-									No Vision
+									Forward →
 								</label>
-							<div class="pull-right">
-								<img src="/img/no_vision.png"/>
-							</div>
 							</label>
 						</td>
 					</tr>
@@ -209,9 +153,6 @@
 									<input type="radio" name="lightshowchoice" value="none"/>
 									None
 								</label>
-							<div class="pull-right">
-								<img src="/img/auto_none.png"/>
-							</div>
 							</label>
 						</td>
 					</tr>
@@ -220,11 +161,8 @@
 							<label class="light-option">
 								<label>
 									<input type="radio" name="lightshowchoice" value="middleGear"/>
-									Middle Gear
+									Rainbow
 								</label>
-							<div class="pull-right">
-								<img src="/img/auto_center.png"/>
-							</div>
 							</label>
 						</td>
 					</tr>
@@ -233,11 +171,8 @@
 							<label class="light-option">
 								<label>
 									<input type="radio" name="lightshowchoice" value="rightGear"/>
-									Right Gear
+									Lightning
 								</label>
-							<div class="pull-right">
-								<img src="/img/auto_right.png"/>
-							</div>
 							</label>
 						</td>
 					</tr>
@@ -246,11 +181,8 @@
 							<label class="light-option">
 								<label>
 									<input type="radio" name="lightshowchoice" value="leftGear"/>
-									Left Gear
+									Fire
 								</label>
-							<div class="pull-right">
-								<img src="/img/auto_left.png"/>
-							</div>
 							</label>
 						</td>
 					</tr>
@@ -259,45 +191,13 @@
 							<label class="light-option">
 								<label>
 									<input type="radio" name="lightshowchoice" value="noVision"/>
-									No Vision
+									Purple Rain
 								</label>
-							<div class="pull-right">
-								<img src="/img/nothing.jpg"/>
-							</div>
 							</label>
 						</td>
 					</tr>
 				</table>
             </div>	
-            <!-- Parameters tab -->
-            <div id="params" class="tab-pane">
-                <div class="container-fluid">
-                    <table class="table table-striped">
-                        <!-- People who want their data displayed here, feel free to mess with this. -->
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>A</td>
-                            <td>B</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>4</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.container-fluid -->
-            </div>
 
             <div role="tabpanel" class="tab-pane" id="networktables">
 
@@ -340,11 +240,6 @@
                 <table id="auto_vars" class="table table-hover">
                     <tbody>
                     <p>Auto</p>
-                    </tbody>
-                </table>
-                <table id="parameter_vars" class="table table-hover">
-                    <tbody>
-                    <p>Parameters</p>
                     </tbody>
                 </table>
                 <table id="nt" class="table table-hover">
