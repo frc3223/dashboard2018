@@ -7,9 +7,7 @@
             var autoKeys = ["autonomousMode", "javaAutoMode"];
 
             var sensorKeys = [ 
-                "seesHighGoal", "xOffsetHighGoal", "zOffsetHighGoal", 
-                "thetaHighGoal", "Sees Lift", "xOffset Lift",
-                "seesLift", "xOffsetLift", "zOffsetLift", "thetaLift", "psiLift"
+                "/Sensor/Navx/Angle",
             ];
 
 
@@ -25,7 +23,7 @@
             }
 
             for (var i = 0; i < sensorKeys.length; i++) {
-                if (key === "/SmartDashboard/" + sensorKeys[i]) {
+                if (key === sensorKeys[i]) {
                     table = '#sensor_vars > tbody:last';
                 }
             }
