@@ -7,7 +7,12 @@
             var autoKeys = ["autonomousMode", "javaAutoMode"];
 
             var sensorKeys = [ 
-                "/Sensor/Navx/Angle",
+                "/Sensor/Navx/Angle", "/Encoder/Left/Position", "/Encoder/Left/Velocity",
+                "/Encoder/Right/Position", "/Encoder/Right/Velocity", "/TalonL/Error/Value", "/TalonR/Error/Value",
+                "/Encoder/Right/I",
+                "/Encoder/Left/I",
+                "/TalonL/Error/I",
+                "/TalonR/Error/I",
             ];
 
 
