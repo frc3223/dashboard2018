@@ -1,5 +1,9 @@
 var autonomousMode = null;
-var autonomousModeLabel = "/SmartDashboard/autonomousMode";
+var switchAttempt = null;
+var scaleAttempt = null;
+var autonomousModeLabel = "SmartDashboard/autonomousMode";
+var switchAttemptLabel = "SmartDashboard/switchAttempt"
+var scaleAttemptLabel = "SmartDashboard/scaleAttempt"
 var websocketConnected = false;
 
 $(function() {
@@ -12,6 +16,24 @@ $(function() {
         showSelectedAutonomousOption();
         console.info("auto: ", $(this), autonomousMode);
         sendAutonomousMode();
+    });
+    $(".auto-option input[name='Switch']").change(function() {
+        autonomousAttempt = $(this).prop("checked");
+        try{
+            console.info("attempt: ", $(this), switchAttempt.toString());
+        } catch {
+            console.info("attempt: ", $(this), (!(SwitchAttempt==null)).toString());
+        }
+        fswitchAttempt();
+    });
+    $(".auto-option input[name='Scale']").change(function() {
+        autonomousAttempt = $(this).prop("checked");
+        try{
+            console.info("attempt: ", $(this), scaleAttempt.toString());
+        } catch {
+            console.info("attempt: ", $(this), (!(scaleAttempt==null)).toString());
+        }
+        fscaleAttempt();
     });
 
     setInterval(syncAutonomousMode, 200);
@@ -44,11 +66,32 @@ function sendAutonomousMode() {
     if(autonomousMode != null) {
         console.info("sending auto mode ", autonomousMode);
         NetworkTables.putValue(autonomousModeLabel, 
-                autonomousMode); 
+                autonomousMode);
     } else {
         console.info("not sending auto mode ", autonomousMode);
     }
 }
+
+
+function fscaleAttempt() {
+    if(scaleAttempt != null) {
+        console.info("sending auto attempt ", autonomousMode);
+        NetworkTables.putValue(scaleAttemptLabel, 
+                scaleAttempt.toString());
+    } else {
+        console.info("not sending scale attempt ", scaleAttempt.toString());
+    }
+}
+function fswitchAttempt() {
+    if(switchAttempt != null) {
+        console.info("sending auto attempt ", autonomousMode);
+        NetworkTables.putValue(switchAttemptLabel, 
+                switchAttempt.toString());
+    } else {
+        console.info("not sending switch attempt ", switchAttempt.toString());
+    }
+}
+
 
 // when robot connects, send autonomousMode. make sure robot gets it.
 function autoRobotConnectionListener(connected) {
