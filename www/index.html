@@ -50,9 +50,6 @@
 			<li>
 				<a data-toggle="tab" href="#controls">Controls</a>
 			</li>
-			<li>
-				<a data-toggle="tab" href="#lightshow">Lightshow</a>
-			</li>
 		</ul>
 	
 		<div class="tab-content">
@@ -76,27 +73,27 @@
 					<div class="row">
 						<div class="col-sm-6">
                             <div id="webcam0_stream" class="camera"> 
-                                <img class="no-signal" src="img/placeholder.png" />
+                                <img src="http://10.32.23.2:1181/stream.mjpg" />
                             </div>
 
-                                <select id='leftFrameCamera'>
+                                <!-- <select id='leftFrameCamera'>
                                     <option value="front">Front</option>
                                     <option value="back">Back</option>
                                     <option value="structure">Structure</option>
                                     <option value="none">None</option>
-                                </select>
+                                </select> -->
 						</div>
 						<div class="col-sm-6">
                             <div id="webcam1_stream" class="camera">
                                 <img class="no-signal" src="img/placeholder.png" />
                             </div>
 
-                                <select id='rightFrameCamera'>
+                                <!-- <select id='rightFrameCamera'>
                                     <option value="front">Front</option>
                                     <option value="back">Back</option>
                                     <option value="structure">Structure</option>
                                     <option value="none">None</option>
-                                </select>
+                                </select> -->
 						</div>
 					</div>
 				</div>
@@ -125,8 +122,8 @@
 						<td>
 							<label class="auto-option">
 								<label>
-									<input type="radio" name="autochoice" value="none"/>
-									None ⃠
+									<input type="radio" name="autochoice" value="Left"/>
+									Left
 								</label>
 							</label>
 						</td>
@@ -135,69 +132,44 @@
 						<td>
 							<label class="auto-option">
 								<label>
-									<input type="radio" name="autochoice" value="noVision"/>
-									Forward →
+									<input type="radio" name="autochoice" value="Right"/>
+									Right
+								</label>
+							</label>
+						</td>
+                    </tr>
+                    <tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="radio" name="autochoice" value="Middle"/>
+									Middle
+								</label>
+							</label>
+						</td>
+                    </tr>
+                    <tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="checkbox" name="Switch" value="Switch" checked/>
+									Switch
+								</label>
+							</label>
+						</td>
+                    </tr>
+                    <tr>
+						<td>
+							<label class="auto-option">
+								<label>
+									<input type="checkbox" name="Scale" value="Scale" unchecked/>
+									Scale
 								</label>
 							</label>
 						</td>
 					</tr>
 				</table>
             </div>
-			<!-- lightshow-->
-			<div role="tabpanel" class="tab-pane"  id="lightshow">
-				<table>
-					<tr>
-						<td>
-							<label class="light-option">
-								<label>
-									<input type="radio" name="lightshowchoice" value="none"/>
-									None
-								</label>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="light-option">
-								<label>
-									<input type="radio" name="lightshowchoice" value="middleGear"/>
-									Rainbow
-								</label>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="light-option">
-								<label>
-									<input type="radio" name="lightshowchoice" value="rightGear"/>
-									Lightning
-								</label>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="light-option">
-								<label>
-									<input type="radio" name="lightshowchoice" value="leftGear"/>
-									Fire
-								</label>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="light-option">
-								<label>
-									<input type="radio" name="lightshowchoice" value="noVision"/>
-									Purple Rain
-								</label>
-							</label>
-						</td>
-					</tr>
-				</table>
-            </div>	
 
             <div role="tabpanel" class="tab-pane" id="networktables">
 

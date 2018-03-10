@@ -116,7 +116,7 @@ var frameR = new CameraFrame({
 });
 
 var piurl = "http://marschmahlo";
-var rio_url = "http://roborio-3223-frc.local";
+var rio_url = "http://10.32.23.2";
 
 var frontCamera;
 
@@ -129,9 +129,9 @@ var nullCamera;
 var structureMode = 8;
 
 function initCameras() {
+    return;
     frontCamera = new Camera({
-        //url: rio_url + ":5800/?action=snapshot",
-		url: piurl + ":5803/?action=snapshot",
+		url: rio_url + ":1181/stream.mjpg",
 		singleImage: false,
         nextCamera: null
     });
@@ -142,21 +142,14 @@ function initCameras() {
         nextCamera: null
     });
 
-    structureCamera = new Camera({
-        url: piurl + ":5802/?action=snapshot",
-        singleImage: false,
-        nextCamera: null
-    });
-
     nullCamera = new Camera({
         url: "/img/indianfront.png",
         singleImage: true,
         nextCamera: null
     });
 
-	frontCamera.nextCamera = altCamera;
-	altCamera.nextCamera = structureCamera;
-	structureCamera.nextCamera = nullCamera;
+	frontCamera.nextCamera = nullCamera;
+	altCamera.nextCamera = nullCamera;
 	nullCamera.nextCamera = frontCamera;
     frameL.setCamera(frontCamera);
     frameR.setCamera(altCamera);
