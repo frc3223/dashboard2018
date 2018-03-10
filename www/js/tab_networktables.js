@@ -13,18 +13,18 @@
                 "/Encoder/Left/I",
                 "/TalonL/Error/I",
                 "/TalonR/Error/I",
+                "/TalonL/Error/Target",
+                "/TalonR/Error/Target",
             ];
 
 
             var parameterKeys = [];
 
-            var joystickKeys = [];
-            for (var i = 0; i < joystickKeys.length; i++) {
-                for (var j = 0; j <= 12; j++) {
-                    if (key === "/SmartDashboard/" + joystickKeys[i] + j) {
-                        table = '#joystick_vars > tbody:last';
-                    }
-                }
+            if (key.startsWith("/Elevator/")) {
+                table = '#elevator_vars > tbody:last';
+            }
+            if (key.startsWith("/Intake/")) {
+                table = '#intake_vars > tbody:last';
             }
 
             for (var i = 0; i < sensorKeys.length; i++) {
