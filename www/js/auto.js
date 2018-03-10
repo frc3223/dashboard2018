@@ -1,8 +1,14 @@
 var autonomousMode = null;
-var autonomousModeLabel = "/SmartDashboard/autonomousMode";
+var switchAttempt = null;
+var scaleAttempt = null;
+var autonomousModeLabel = "SmartDashboard/autonomousMode";
+var switchAttemptLabel = "SmartDashboard/switchAttempt"
+var scaleAttemptLabel = "SmartDashboard/scaleAttempt"
 var websocketConnected = false;
 
 $(function() {
+    NetworkTables.putValue(switchAttemptLabel, true);
+    NetworkTables.putValue(scaleAttemptLabel, false);
     NetworkTables.addWsConnectionListener(autoWebSocketConnectionListener, true);
     NetworkTables.addRobotConnectionListener(autoRobotConnectionListener, true);
     NetworkTables.addGlobalListener(autoListener, true);
@@ -12,6 +18,16 @@ $(function() {
         showSelectedAutonomousOption();
         console.info("auto: ", $(this), autonomousMode);
         sendAutonomousMode();
+    });
+    $(".auto-option input[name='Switch']").change(function() {
+        switchAttempt = $(this).prop("checked");
+        console.info("attempt: ", $(this), switchAttempt);
+        fSwitchAttempt();
+    });
+    $(".auto-option input[name='Scale']").change(function() {
+        scaleAttempt = $(this).prop("checked");
+            console.info("attempt: ", $(this), scaleAttempt);
+        fScaleAttempt();
     });
 
     setInterval(syncAutonomousMode, 200);
@@ -44,9 +60,25 @@ function sendAutonomousMode() {
     if(autonomousMode != null) {
         console.info("sending auto mode ", autonomousMode);
         NetworkTables.putValue(autonomousModeLabel, 
-                autonomousMode); 
+                autonomousMode);
     } else {
         console.info("not sending auto mode ", autonomousMode);
+    }
+}
+
+function fScaleAttempt() {
+    if(scaleAttempt != null) {
+        console.info("sending auto attempt ", autonomousMode);
+        NetworkTables.putValue(scaleAttemptLabel, 
+                scaleAttempt);
+    }
+}
+
+function fSwitchAttempt() {
+    if(switchAttempt != null) {
+        console.info("sending auto attempt ", autonomousMode);
+        NetworkTables.putValue(switchAttemptLabel, 
+                switchAttempt);
     }
 }
 
