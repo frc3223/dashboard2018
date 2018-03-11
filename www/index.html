@@ -101,7 +101,7 @@
                     </span>
                 </div>
                 <div>
-                    Java thinks auto mode is: <span id="javaAutoMode"></span>
+                    Robot thinks auto mode is: <span id="robotAutoMode"></span>
                 </div>
 				<table>
 					<tr>
@@ -142,6 +142,9 @@
 									Switch
 								</label>
 							</label>
+
+                            Robot thinks it should attempt switch: 
+                            <span id="robotSwitchAttempt"></span>
 						</td>
                     </tr>
                     <tr>
@@ -152,6 +155,8 @@
 									Scale
 								</label>
 							</label>
+                            Robot thinks it should attempt scale: 
+                            <span id="robotScaleAttempt"></span>
 						</td>
 					</tr>
 				</table>
@@ -195,9 +200,14 @@
                     <p>Intake</p>
                     </tbody>
                 </table>
-                <table id="sensor_vars" class="table table-hover">
+                <table id="drivetrain_vars" class="table table-hover">
                     <tbody>
-                    <p>Sensor</p>
+                    <p>Drivetrain</p>
+                    </tbody>
+                </table>
+                <table id="auto_vars" class="table table-hover">
+                    <tbody>
+                    <p>Auto</p>
                     </tbody>
                 </table>
                 <table id="nt" class="table table-hover">

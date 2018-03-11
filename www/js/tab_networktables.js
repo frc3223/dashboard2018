@@ -4,21 +4,7 @@
             //console.info('onValueChanged', key, value, isNew);
             var table = '#nt > tbody:last';
 
-            var autoKeys = ["autonomousMode", "javaAutoMode"];
-
-            var sensorKeys = [ 
-                "/Sensor/Navx/Angle", "/Encoder/Left/Position", "/Encoder/Left/Velocity",
-                "/Encoder/Right/Position", "/Encoder/Right/Velocity", "/TalonL/Error/Value", "/TalonR/Error/Value",
-                "/Encoder/Right/I",
-                "/Encoder/Left/I",
-                "/TalonL/Error/I",
-                "/TalonR/Error/I",
-                "/TalonL/Error/Target",
-                "/TalonR/Error/Target",
-            ];
-
-
-            var parameterKeys = [];
+            var autoKeys = ["autonomousMode", "robotAutoMode", "switchAttempt", "scaleAttempt", "robotSwitchAttempt", "robotScaleAttempt"];
 
             if (key.startsWith("/Elevator/")) {
                 table = '#elevator_vars > tbody:last';
@@ -26,22 +12,13 @@
             if (key.startsWith("/Intake/")) {
                 table = '#intake_vars > tbody:last';
             }
-
-            for (var i = 0; i < sensorKeys.length; i++) {
-                if (key === sensorKeys[i]) {
-                    table = '#sensor_vars > tbody:last';
-                }
+            if(key.startsWith("/Drivetrain/")) {
+                table = '#drivetrain_vars > tbody:last';
             }
 
             for (var i = 0; i < autoKeys.length; i++) {
                 if (key === "/SmartDashboard/" + autoKeys[i]) {
                     table = '#auto_vars > tbody:last';
-                }
-            }
-
-            for (var i = 0; i < parameterKeys.length; i++) {
-                if (key === "/SmartDashboard/" + parameterKeys[i]) {
-                    table = '#parameter_vars > tbody:last';
                 }
             }
 

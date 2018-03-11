@@ -1,14 +1,12 @@
 var autonomousMode = null;
-var switchAttempt = null;
-var scaleAttempt = null;
+var switchAttempt = true;
+var scaleAttempt = false;
 var autonomousModeLabel = "SmartDashboard/autonomousMode";
 var switchAttemptLabel = "SmartDashboard/switchAttempt"
 var scaleAttemptLabel = "SmartDashboard/scaleAttempt"
 var websocketConnected = false;
 
 $(function() {
-    NetworkTables.putValue(switchAttemptLabel, true);
-    NetworkTables.putValue(scaleAttemptLabel, false);
     NetworkTables.addWsConnectionListener(autoWebSocketConnectionListener, true);
     NetworkTables.addRobotConnectionListener(autoRobotConnectionListener, true);
     NetworkTables.addGlobalListener(autoListener, true);
@@ -21,16 +19,16 @@ $(function() {
     });
     $(".auto-option input[name='Switch']").change(function() {
         switchAttempt = $(this).prop("checked");
-        console.info("attempt: ", $(this), switchAttempt);
-        fSwitchAttempt();
+        console.info("switch attempt: ", $(this), switchAttempt);
+        sendSwitchAttempt();
     });
     $(".auto-option input[name='Scale']").change(function() {
         scaleAttempt = $(this).prop("checked");
-            console.info("attempt: ", $(this), scaleAttempt);
-        fScaleAttempt();
+            console.info("scale attempt: ", $(this), scaleAttempt);
+        sendScaleAttempt();
     });
 
-    setInterval(syncAutonomousMode, 200);
+    setInterval(syncAutonomousMode, 800);
 });
 
 // this will be connected when the dashboard server is connected,
@@ -55,6 +53,16 @@ function selectAutonomousOption() {
     showSelectedAutonomousOption();
 }
 
+// this does not fire the change event either
+function selectSwitchAttempt() {
+    $(".auto-option input[name='Switch']").prop("checked", switchAttempt);
+}
+
+// this does not fire the change event either
+function selectScaleAttempt() {
+    $(".auto-option input[name='Scale']").prop("checked", scaleAttempt);
+}
+
 // send autonomous mode to robot
 function sendAutonomousMode() {
     if(autonomousMode != null) {
@@ -66,17 +74,17 @@ function sendAutonomousMode() {
     }
 }
 
-function fScaleAttempt() {
+function sendScaleAttempt() {
     if(scaleAttempt != null) {
-        console.info("sending auto attempt ", autonomousMode);
+        console.info("sending scale attempt ", scaleAttempt);
         NetworkTables.putValue(scaleAttemptLabel, 
                 scaleAttempt);
     }
 }
 
-function fSwitchAttempt() {
+function sendSwitchAttempt() {
     if(switchAttempt != null) {
-        console.info("sending auto attempt ", autonomousMode);
+        console.info("sending switch attempt ", switchAttempt);
         NetworkTables.putValue(switchAttemptLabel, 
                 switchAttempt);
     }
@@ -99,8 +107,14 @@ function autoListener(key, value, isNew) {
         autonomousMode = value;
         selectAutonomousOption();
     }
-    if(key === "/SmartDashboard/javaAutoMode") {
-        $("#javaAutoMode").text(value);
+    if(key === "/SmartDashboard/robotAutoMode") {
+        $("#robotAutoMode").text(value);
+    }
+    if(key === "/SmartDashboard/robotSwitchAttempt") {
+        $("#robotSwitchAttempt").text(value);
+    }
+    if(key === "/SmartDashboard/robotScaleAttempt") {
+        $("#robotScaleAttempt").text(value);
     }
 }
 
@@ -112,16 +126,22 @@ function autoListener(key, value, isNew) {
 // autonomousMode to the UI and to network tables as needed.
 
 function syncAutonomousMode() {
-    if(autonomousMode != null) {
-        selectAutonomousOption();
+    ensureSent(autonomousModeLabel, autonomousMode, selectAutonomousOption, sendAutonomousMode);
+    ensureSent(switchAttemptLabel, switchAttempt, selectSwitchAttempt, sendSwitchAttempt);
+    ensureSent(scaleAttemptLabel, scaleAttempt, selectScaleAttempt, sendScaleAttempt);
+}
+
+function ensureSent(label, local_value, selector, sender) {
+    if(local_value != null) {
+        selector();
         if(websocketConnected) {
-            if(NetworkTables.containsKey(autonomousModeLabel)) {
-                var value = NetworkTables.getValue(autonomousModeLabel);
-                if(value != autonomousMode) {
-                    sendAutonomousMode();
+            if(NetworkTables.containsKey(label)) {
+                var value = NetworkTables.getValue(label);
+                if(value != local_value) {
+                    sender();
                 }
             }else{
-                sendAutonomousMode();
+                sender();
             }
         }
     }
