@@ -1,19 +1,19 @@
 
 .camera {
-    width: 500px;
+    width: 800px;
     height: 374px;
     margin: 10px;
     text-align: left;
 }
 
 .camera img {
-    width: 500px;
+    width: 800px;
     height: 374px;
 }
 
 .camera .signal {
     position: absolute;
-	width:500px;
+	width:800px;
 	height:auto;
 }
 

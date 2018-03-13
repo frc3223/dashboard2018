@@ -53,10 +53,10 @@ $(function () {
         noSignal: "/img/indianfront.png"
     });
 
-    altCamera = new CscoreCamera({
+    /*altCamera = new CscoreCamera({
         url: rio_url + ":1182",
         selector: "#webcam1_stream",
         noSignal: "/img/indianfront.png"
-    });
+    });*/
 
 });

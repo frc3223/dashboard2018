@@ -38,9 +38,6 @@
 			<li class="active">
 				<a data-toggle="tab" href="#teleop">Teleop</a>
 			</li>
-			<li>
-				<a data-toggle="tab" href="#auto">Auto</a>
-			</li>
             <li>
 				<a data-toggle="tab" href="#networktables">Networktables</a>
             </li>
@@ -64,104 +61,88 @@
                     <i class='glyphicon glyphicon-alert'></i>
                     Robot not connected. 
                 </span>
-                <hr/>
-				<div class="container-fluid text-center">
-					<div class="row">
-						<!-- TODO: update span to reflect which controller is currently controlling robot -->
-						<p id="driver-text">Driver <span id="active-driver-number">1</span> in control</p>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">
-                            <div id="webcam0_stream" class="camera"> 
-                                <img class='no-signal' src="img/placeholder.png" />
-                            </div>
-						</div>
-						<div class="col-sm-6">
-                            <div id="webcam1_stream" class="camera">
-                                <img class="no-signal" src="img/placeholder.png" />
-                            </div>
-						</div>
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-			</div>
+				
 		
-            <div role="tabpanel" class="tab-pane"  id="auto">
-                <div>
-                    <span class="connection-warning">
-                        <i class='glyphicon glyphicon-alert'></i>
-                        Websocket not connected. Robot's autonomous mode may be 
-                        different than what is shown below.
-                        <br>
-                    </span>
-                    <span class="robot-connection-warning">
-                        <i class='glyphicon glyphicon-alert'></i>
-                        Robot not connected. Robot's autonomous mode may be 
-                        different than what is shown below.
-                    </span>
-                </div>
-                <div>
-                    Robot thinks auto mode is: <span id="robotAutoMode"></span>
-                </div>
-				<table>
-					<tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="radio" name="autochoice" value="Left"/>
-									Left
+				<div class='pull-right' style='width:450px'>
+					<div>
+						<span class="connection-warning">
+							<i class='glyphicon glyphicon-alert'></i>
+							Websocket not connected. Robot's autonomous mode may be 
+							different than what is shown below.
+							<br>
+						</span>
+						<span class="robot-connection-warning">
+							<i class='glyphicon glyphicon-alert'></i>
+							Robot not connected. Robot's autonomous mode may be 
+							different than what is shown below.
+						</span>
+					</div>
+					<div>
+						Robot thinks auto mode is: <span id="robotAutoMode"></span>
+					</div>
+					<table>
+						<tr>
+							<td>
+								<label class="auto-option">
+									<label>
+										<input type="radio" name="autochoice" value="Left"/>
+										Left
+									</label>
 								</label>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="radio" name="autochoice" value="Right"/>
-									Right
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="auto-option">
+									<label>
+										<input type="radio" name="autochoice" value="Right"/>
+										Right
+									</label>
 								</label>
-							</label>
-						</td>
-                    </tr>
-                    <tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="radio" name="autochoice" value="Middle"/>
-									Middle
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="auto-option">
+									<label>
+										<input type="radio" name="autochoice" value="Middle"/>
+										Middle
+									</label>
 								</label>
-							</label>
-						</td>
-                    </tr>
-                    <tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="checkbox" name="Switch" value="Switch" checked/>
-									Switch
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="auto-option">
+									<label>
+										<input type="checkbox" name="Switch" value="Switch" checked/>
+										Switch
+									</label>
 								</label>
-							</label>
 
-                            Robot thinks it should attempt switch: 
-                            <span id="robotSwitchAttempt"></span>
-						</td>
-                    </tr>
-                    <tr>
-						<td>
-							<label class="auto-option">
-								<label>
-									<input type="checkbox" name="Scale" value="Scale" unchecked/>
-									Scale
+								Robot thinks it should attempt switch: 
+								<span id="robotSwitchAttempt"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="auto-option">
+									<label>
+										<input type="checkbox" name="Scale" value="Scale" unchecked/>
+										Scale
+									</label>
 								</label>
-							</label>
-                            Robot thinks it should attempt scale: 
-                            <span id="robotScaleAttempt"></span>
-						</td>
-					</tr>
-				</table>
-            </div>
-
+								Robot thinks it should attempt scale: 
+								<span id="robotScaleAttempt"></span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div id="webcam0_stream" class="camera"> 
+					<img class='no-signal' src="img/placeholder.png" />
+				</div>
+			</div>
             <div role="tabpanel" class="tab-pane" id="networktables">
 
 
