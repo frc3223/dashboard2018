@@ -47,16 +47,29 @@ var frontCamera;
 var altCamera;
 
 $(function () {
+    var frontIsDisplayed = true;
     frontCamera = new CscoreCamera({
 		url: rio_url + ":1181",
         selector: "#webcam0_stream",
         noSignal: "/img/indianfront.png"
     });
 
-    /*altCamera = new CscoreCamera({
+    altCamera = new CscoreCamera({
         url: rio_url + ":1182",
         selector: "#webcam1_stream",
         noSignal: "/img/indianfront.png"
-    });*/
+    });
+
+    $("#webcam0_stream, #webcam1_stream").click(function() {
+        if(frontIsDisplayed) {
+            $("#webcam0_stream").hide();
+            $("#webcam1_stream").show();
+            frontIsDisplayed = false;
+        }else{
+            $("#webcam0_stream").show();
+            $("#webcam1_stream").hide();
+            frontIsDisplayed = true;
+        }
+    });
 
 });
