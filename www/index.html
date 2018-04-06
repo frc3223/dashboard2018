@@ -93,31 +93,59 @@
 					<hr>
 
 					<div id="left_side_auto_choice" class="form-group">
-						<label class="auto-option">
+						<label class="auto-option" style="display:block">
 							<input type="radio" name="auto_choice" value="LSwScDr"/>
 							Switch then Scale then Drive Forward
 						</label>
-						<label class="auto-option">
-							<input type="radio" name="auto_choice" value="Scale"/>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="LScSwDr"/>
 							Scale then Switch then Drive Forward
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="LSwSwSw"/>
+							Switch only (crosses over)
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="LScScSc"/>
+							Scale only (crosses over)
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="LDrDrDr"/>
+							Just Drive Forward
 						</label>
 					</div>
 
-					<div id="right_side_auto_choice" class="form-group">
-						<label class="auto-option">
-								<input type="radio" name="auto_choice" value="SwScDr"/>
-								Switch then Scale then Drive Forward
-						</label>
-						<label class="auto-option">
-							<input type="radio" name="auto_choice" value="Scale"/>
+					<div id="right_side_auto_choice" class="form-group" style="display:none">
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="RSwScDr"/>
 							Switch then Scale then Drive Forward
-					</label>
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="RScSwDr"/>
+							Scale then Switch then Drive Forward
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="RSwSwSw"/>
+							Switch only (crosses over)
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="RScScSc"/>
+							Scale only (crosses over)
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="RDrDrDr"/>
+							Just Drive Forward
+						</label>
 					</div>
 
 					<div id="middle_auto_choice" class="form-group" style="display:none">
-						<label class="auto-option">
-								<input type="radio" name="auto_choice" value="Switch"/>
-								Switch
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="MSwSwSw"/>
+							Switch only (crosses over)
+						</label>
+						<label class="auto-option" style="display:block">
+							<input type="radio" name="auto_choice" value="MDrDrDr"/>
+							Just Drive Forward
 						</label>
 					</div>
 					<!-- <table>

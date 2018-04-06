@@ -57,22 +57,35 @@ $(function() {
     NetworkTables.addGlobalListener(autoListener, true);
     // update autonomousMode on user input
     $("#position").change(function() {
-        autonomousMode = $(this).val();
+        position = $(this).val();
         showSelectedAutonomousOption();
-        console.info("auto: ", $(this), autonomousMode);
-        sendAutonomousMode();
 
-        var side_auto_list = $("#side_auto_choice");
+
+        var left_side_auto_list = $("#left_side_auto_choice");
+        var right_side_auto_list = $("#right_side_auto_choice");
         var middle_auto_list = $("#middle_auto_choice");
 
-        if(autonomousMode==="Left" || autonomousMode==="Right"){
-            side_auto_list.show();
+        if(position==="Left"){
+            left_side_auto_list.show();
+            right_side_auto_list.hide();
             middle_auto_list.hide();
-        }else if(autonomousMode==="Middle"){
-            side_auto_list.hide();
+        }else if(position==="Right"){
+            left_side_auto_list.hide();
+            right_side_auto_list.show();
+            middle_auto_list.hide();
+        }
+        else if(position==="Middle"){
+            left_side_auto_list.hide();
+            right_side_auto_list.hide();
             middle_auto_list.show();
         }
     });
+
+    $("input[name='auto_choice']").change(function(){
+        autonomousMode = $(this).val();
+        console.info("auto: ", $(this), autonomousMode);
+        sendAutonomousMode();
+    })
     /*$(".auto-option input[name='Switch']").change(function() {
         switchAttempt = $(this).prop("checked");
         console.info("switch attempt: ", $(this), switchAttempt);
