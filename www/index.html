@@ -80,7 +80,47 @@
 					<div>
 						Robot thinks auto mode is: <span id="robotAutoMode"></span>
 					</div>
-					<table>
+
+					<div class="form-group">
+						<label for="position">Side:</label>
+						<select class="form-control" id="position">
+						  <option value="Left">Left</option>
+						  <option value="Right">Right</option>
+						  <option value="Middle">Middle</option>
+						</select>
+					</div>
+					 
+					<hr>
+
+					<div id="left_side_auto_choice" class="form-group">
+						<label class="auto-option">
+							<input type="radio" name="auto_choice" value="LSwScDr"/>
+							Switch then Scale then Drive Forward
+						</label>
+						<label class="auto-option">
+							<input type="radio" name="auto_choice" value="Scale"/>
+							Scale then Switch then Drive Forward
+						</label>
+					</div>
+
+					<div id="right_side_auto_choice" class="form-group">
+						<label class="auto-option">
+								<input type="radio" name="auto_choice" value="SwScDr"/>
+								Switch then Scale then Drive Forward
+						</label>
+						<label class="auto-option">
+							<input type="radio" name="auto_choice" value="Scale"/>
+							Switch then Scale then Drive Forward
+					</label>
+					</div>
+
+					<div id="middle_auto_choice" class="form-group" style="display:none">
+						<label class="auto-option">
+								<input type="radio" name="auto_choice" value="Switch"/>
+								Switch
+						</label>
+					</div>
+					<!-- <table>
 						<tr>
 							<td>
 								<label class="auto-option">
@@ -136,9 +176,9 @@
 								<span id="robotScaleAttempt"></span>
 							</td>
 						</tr>
-					</table>
+					</table> -->
 				</div>
-				
+			
 				<div id="webcam0_stream" class="camera"> 
 					<img class='no-signal' src="img/placeholder.png" />
 				</div>

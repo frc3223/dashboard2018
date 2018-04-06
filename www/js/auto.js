@@ -1,3 +1,48 @@
+/*
+    The main point of this page is to show video and select an autonomous mode
+    
+    Selecting auto mode is based around a 7 digit code that gets constructed and put into
+    NetworkTables for the auto code to read. An example code looks like this:
+
+    LSwScDr
+        if left switch then do left switch
+        else if left scale then do left scale
+        else drive forward
+    LScSwDr
+        if left scale then do left scale
+        else if left switch then do left switch
+        else drive forward
+    LSwSwSw
+        if left switch then do left switch
+        else do cross right switch
+    LScScSc
+        if left scale then do left scale
+        else do cross right scale
+    LDrDrDr
+        drive forward
+
+    RSwScDr
+    RScSwDr
+    RSwSwSw
+    RScScSc
+    RDrDrDr
+
+    MSwSwSw
+    MDrDrDr
+
+    It is separated like L then Sw, Sc, Dr. 
+    
+    This first character is the position of the 
+    robot: L, R, or M for Left, Right, and Middle respectively.
+
+    The next 6 characters come in pairs of two and tell the auto mode the priority order
+    which the robot should follow when determining what to do after recieving the game code.
+
+    Sw is for Switch
+    Sc is for Scale
+    Dr is for Drive
+*/ 
+
 var autonomousMode = null;
 var switchAttempt = true;
 var scaleAttempt = false;
@@ -11,13 +56,24 @@ $(function() {
     NetworkTables.addRobotConnectionListener(autoRobotConnectionListener, true);
     NetworkTables.addGlobalListener(autoListener, true);
     // update autonomousMode on user input
-    $(".auto-option input[name='autochoice']").change(function() {
+    $("#position").change(function() {
         autonomousMode = $(this).val();
         showSelectedAutonomousOption();
         console.info("auto: ", $(this), autonomousMode);
         sendAutonomousMode();
+
+        var side_auto_list = $("#side_auto_choice");
+        var middle_auto_list = $("#middle_auto_choice");
+
+        if(autonomousMode==="Left" || autonomousMode==="Right"){
+            side_auto_list.show();
+            middle_auto_list.hide();
+        }else if(autonomousMode==="Middle"){
+            side_auto_list.hide();
+            middle_auto_list.show();
+        }
     });
-    $(".auto-option input[name='Switch']").change(function() {
+    /*$(".auto-option input[name='Switch']").change(function() {
         switchAttempt = $(this).prop("checked");
         console.info("switch attempt: ", $(this), switchAttempt);
         sendSwitchAttempt();
@@ -27,7 +83,7 @@ $(function() {
             console.info("scale attempt: ", $(this), scaleAttempt);
         sendScaleAttempt();
     });
-
+    */
     setInterval(syncAutonomousMode, 800);
 });
 
@@ -127,8 +183,6 @@ function autoListener(key, value, isNew) {
 
 function syncAutonomousMode() {
     ensureSent(autonomousModeLabel, autonomousMode, selectAutonomousOption, sendAutonomousMode);
-    ensureSent(switchAttemptLabel, switchAttempt, selectSwitchAttempt, sendSwitchAttempt);
-    ensureSent(scaleAttemptLabel, scaleAttempt, selectScaleAttempt, sendScaleAttempt);
 }
 
 function ensureSent(label, local_value, selector, sender) {
